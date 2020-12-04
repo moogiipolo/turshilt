@@ -6,14 +6,22 @@ import BagajControls from "../../compnents/BagajControls";
 class Add extends Component {
   //BurgerBuilder => Add
   state = {
-    ingredients: { BagajGar: 1, BagajGaz: 5, BagarBaterei: 0, Dagaldah: 0 },
+    ingredients: { BagajBaterei: 0, BagajGaz: 0, BagajGar: 0, BagajTsahilgaan: 0, Dagaldah: 0, Material: 0, HoolHuns: 0 },
   };
-  ortsNemeh = (type) => {
-    console.log("===" + type);
+
+
+
+
+
+  ortsNemeh = type => {
+    console.log("===>" + type);
+
     const newIngredients = { ...this.state.ingredients };
     newIngredients[type]++;
+
     this.setState({ ingredients: newIngredients });
   };
+  
   render() {
     return (
       <div>
@@ -23,4 +31,5 @@ class Add extends Component {
     );
   }
 }
+
 export default Add;

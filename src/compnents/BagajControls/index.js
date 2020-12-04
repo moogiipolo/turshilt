@@ -3,9 +3,9 @@ import React from "react";
 import BagajControl from "../Bagajcontrol";
 import css from "./style.module.css";
 
-const BagajControls = (props) => (
+const BagajControls = props => (
   <div className={css.BagajControls}>
-    <BagajControl type="BagajBaterei" orts="Багаж Батерей" />
+    <BagajControl ortNemeh={props.ortsNemeh} type="BagajBaterei" orts="Багаж Батерей" />
     <BagajControl ortNemeh={props.ortsNemeh} type="BagajGaz" orts="Багаж Газ" />
     <BagajControl ortNemeh={props.ortsNemeh} type="BagajGar" orts="Багаж Гар" />
     <BagajControl

@@ -1,8 +1,8 @@
 import React from "react";
 import css from "./style.module.css";
 
-const Bagajnuud = (props) => {
-  //BurgerIngrediet => Bagajnuud
+const Bagajnuud = props => {
+  //BurgerIngredient => Bagajnuud
   if (props.type == "BagajBaterei")
     return <div className={css.BagajBaterei}>{props.type}</div>;
   if (props.type == "BagajGaz")
@@ -19,4 +19,6 @@ const Bagajnuud = (props) => {
     return <div className={css.HoolHuns}>{props.type}</div>;
   return <div>busad</div>;
 };
+
+
 export default Bagajnuud;
