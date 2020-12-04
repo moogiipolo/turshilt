@@ -17,6 +17,7 @@ const BagajControls = props => (
     <BagajControl ortNemeh={props.ortsNemeh} type="Material" orts="Материал" />
     <BagajControl ortNemeh={props.ortsNemeh} type="HoolHuns" orts="Хоол хүнс" />
   </div>
-); //Buildcontrols => Bagajcontrols
+);
+ //Buildcontrols => Bagajcontrols
 
 export default BagajControls;
