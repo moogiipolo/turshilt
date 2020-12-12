@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./pages/App";
