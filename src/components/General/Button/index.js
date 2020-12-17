@@ -6,7 +6,7 @@ const Button = props => (
     onClick={props.daragdsan}
     className={`${css.Button} ${css[props.btnType]}`}
   >
-    {props.text}{" "}
+    {props.text}
   </button>
 );
 
