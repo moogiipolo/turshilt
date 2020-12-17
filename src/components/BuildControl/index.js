@@ -6,14 +6,12 @@ const BuildControl = (props) => {
   const burgerContext = useContext(BurgerContext);
   return (
     <div className={css.BuildControl}>
-      <div className={css.Label}>{props.orts}
-      {console.log("Dfsdfs", [props.type])}</div>
+      <div className={css.Label}>{props.orts}</div>
       <button
         disabled={props.disabled[props.type]}
         onClick={() => burgerContext.removeIngredient(props.type)}
         className={css.Less}
       >
-        
         Хасах
       </button>
       <button

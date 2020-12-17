@@ -5,9 +5,6 @@ import BurgerContext from "../../context/BurgerContext";
 
 const Burger = (props) => {
   const burgerContext = useContext(BurgerContext);
-
-  // console.log("hello");
-
   return useMemo(() => {
     // console.log("Burger rendered!!!!....");
 
