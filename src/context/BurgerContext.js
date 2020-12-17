@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "../axios-orders";
 
 const BurgerContext = React.createContext();
@@ -12,7 +12,7 @@ const initialState = {
     bacon: 0,
     meat: 0,
   },
-  totalPrice: 1000,
+  totalPrice: 0,
   purchasing: false,
   ingredientNames: {
     bacon: "Гахайн мах",
@@ -20,6 +20,7 @@ const initialState = {
     meat: "Үхрийн мах",
     salad: "Салад",
   },
+  effect: true,
   saving: false,
   finished: false,
   error: null,
@@ -27,6 +28,16 @@ const initialState = {
 
 export const BurgerStore = (props) => {
   const [burger, setBurger] = useState(initialState);
+  const [tuuver, setTuuver] = useState();
+  useEffect(() => {
+    axios
+      .get("/orders.json")
+      .then((response) => {
+        setTuuver(response.data);
+        setBurger({...burger, effect: false});
+        // console.log("==>",tuuver);
+      })
+  }, [burger.effect]);
 
   const toggle = () => {
     setBurger({ ...burger, saving: !burger.saving });
@@ -52,34 +63,69 @@ export const BurgerStore = (props) => {
   };
 
   const addIngredient = (orts) => {
+    if (tuuver[orts].Тоо !== tuuver[orts].НийтҮнэ)
+    {
     setBurger({
       ...burger,
-      ingredients: {
-        ...burger.ingredients,
-        [orts]: burger.ingredients[orts] + 1,
-      },
-      totalPrice: burger.totalPrice + INGREDIENT_PRICES[orts],
+      totalPrice: burger.totalPrice + tuuver[orts].НэгжҮнэ,
       purchasing: true,
     });
-  };
+    setTuuver({
+        ...tuuver,
+        [orts]: {
+          userId: tuuver[orts].userId,
+          Ангилал: tuuver[orts].Ангилал,
+          Брэнд: tuuver[orts].Брэнд,
+          ДагалдахХэрэгсэл: tuuver[orts].ДагалдахХэрэгсэл,
+          Загвар: tuuver[orts].Загвар,
+          Линк: tuuver[orts].Линк,
+          НэгжҮнэ: tuuver[orts].НэгжҮнэ,
+          Тайлбар: tuuver[orts].Тайлбар,
+          Тоо: tuuver[orts].Тоо,
+          Хэзээ: tuuver[orts].Хэзээ,
+          ХэмжихНэгж: tuuver[orts].ХэмжихНэгж,
+          Эвдэрэл: tuuver[orts].Эвдэрэл,
+          Нэр: tuuver[orts].Нэр,
+          if: true,
+          НийтҮнэ: tuuver[orts].НийтҮнэ + 1,}
+      },
+    );}
+    };
 
   const removeIngredient = (orts) => {
-    const newPrice = burger.totalPrice - INGREDIENT_PRICES[orts];
-    setBurger({
+    const newPrice = burger.totalPrice - tuuver[orts].НэгжҮнэ;
+      setBurger({
       ...burger,
-      ingredients: {
-        ...burger.ingredients,
-        [orts]: burger.ingredients[orts] - 1,
-      },
       totalPrice: newPrice,
-      purchasing: newPrice > 1000,
+      purchasing: newPrice > 0,
     });
-  };
+    setTuuver({
+        ...tuuver,
+        [orts]: {
+          userId: tuuver[orts].userId,
+          Ангилал: tuuver[orts].Ангилал,
+          Брэнд: tuuver[orts].Брэнд,
+          ДагалдахХэрэгсэл: tuuver[orts].ДагалдахХэрэгсэл,
+          Загвар: tuuver[orts].Загвар,
+          Линк: tuuver[orts].Линк,
+          НэгжҮнэ: tuuver[orts].НэгжҮнэ,
+          Тайлбар: tuuver[orts].Тайлбар,
+          Тоо: tuuver[orts].Тоо,
+          Хэзээ: tuuver[orts].Хэзээ,
+          ХэмжихНэгж: tuuver[orts].ХэмжихНэгж,
+          Эвдэрэл: tuuver[orts].Эвдэрэл,
+          Нэр: tuuver[orts].Нэр,
+          if: tuuver[orts].if,
+          НийтҮнэ: tuuver[orts].НийтҮнэ - 1,}
+      },
+    );
+    };
 
   return (
     <BurgerContext.Provider
       value={{
         burger,
+        tuuver,
         addIngredient,
         removeIngredient,
         saveBurger,

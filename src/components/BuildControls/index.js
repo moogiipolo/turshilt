@@ -5,27 +5,35 @@ import css from "./style.module.css";
 
 const BuildControls = (props) => {
   const burgerContext = useContext(BurgerContext);
-  const disabledIngredients = { ...burgerContext.burger.ingredients };
+  const Tuuver = {...burgerContext.tuuver};
+  const disabledIngredients = { ...burgerContext.tuuver};
 
-  for (let key in disabledIngredients) {
-    disabledIngredients[key] = disabledIngredients[key] <= 0;
-  }
-
-  return (
+  for (let key in Tuuver) {
+    disabledIngredients[key].if = disabledIngredients[key].НийтҮнэ <= 0;
+    }
+   return (
     <div className={css.BuildControls}>
       <p>
         Бургерийн үнэ : <strong>{burgerContext.burger.totalPrice}</strong>
       </p>
-
-      {Object.keys(burgerContext.burger.ingredientNames).map((el) => (
-        <BuildControl
+      {/* {console.log(Tuuver)} */}
+      {Object.keys(Tuuver).map((el) => (
+        // console.log("==>", el),
+        // ("Tuuver", Tuuver[el].Нэр),
+        // console.log("==>", el),
+      {/* {Object.keys(burgerContext.burger.ingredientNames).map((el) => ( */},{/* //))} */},
+        (<BuildControl
           key={el}
           disabled={disabledIngredients}
           type={el}
-          orts={burgerContext.burger.ingredientNames[el]}
-        />
+          ortsa={Tuuver[el].Нэр}
+          ortsb={", "}
+          ortsc={Tuuver[el].Тайлбар}
+          baigaaToo={Tuuver[el].Тоо}
+          tegToo={Tuuver[el].НийтҮнэ}
+        />)
+      
       ))}
-
       <button
         onClick={props.showConfirmModal}
         disabled={!burgerContext.burger.purchasing}
