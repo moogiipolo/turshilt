@@ -45,14 +45,14 @@ export const UserStore = (props) => {
     // token shinechleh code
     axios
       .post(
-        "https://securetoken.googleapis.com/v1/token?key=AIzaSyCqmd4YTxmQeL-M4aHme3lyIzBnDDeNw3Y",
+        "https://securetoken.googleapis.com/v1/token?key=AIzaSyCEmDZW6k2XJlQritKoYeJG14ExYa1rRSM",
         {
           grant_type: "refresh_token",
           refresh_token: localStorage.getItem("refreshToken"),
         }
       )
       .then((result) => {
-        // console.log("Token refreshed .....", result.data);
+        console.log("Token refreshed .....", result.data);
         const token = result.data.id_token;
         const userId = result.data.user_id;
         const expiresIn = result.data.expires_in;
@@ -91,7 +91,7 @@ export const UserStore = (props) => {
 
     axios
       .post(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCqmd4YTxmQeL-M4aHme3lyIzBnDDeNw3Y",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCEmDZW6k2XJlQritKoYeJG14ExYa1rRSM",
         data
       )
       .then((result) => {
@@ -133,8 +133,7 @@ export const UserStore = (props) => {
 
     axios
       .post(
-        // moogiipolo key hiilees
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCqmd4YTxmQeL-M4aHme3lyIzBnDDeNw3Y",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCEmDZW6k2XJlQritKoYeJG14ExYa1rRSM",
         data
       )
       .then((result) => {

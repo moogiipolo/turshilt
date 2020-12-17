@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "../axios-orders";
 
 const BurgerContext = React.createContext();
+
 const INGREDIENT_PRICES = { salad: 150, cheese: 250, bacon: 800, meat: 1500 };
-const Mdata = {};
+
 const initialState = {
-  ingredients: { salad: 0, cheese: 0, bacon: 0, meat: 0 },
+  ingredients: {
+    salad: 0,
+    cheese: 0,
+    bacon: 0,
+    meat: 0,
+  },
   totalPrice: 1000,
   purchasing: false,
   ingredientNames: {
@@ -14,7 +20,6 @@ const initialState = {
     meat: "Үхрийн мах",
     salad: "Салад",
   },
-  baseTatah: "tataagui",
   saving: false,
   finished: false,
   error: null,
@@ -22,52 +27,11 @@ const initialState = {
 
 export const BurgerStore = (props) => {
   const [burger, setBurger] = useState(initialState);
-  const [Mdata, setMdata] = useState();
-  useEffect(() => {
-    axios.get("/orders.json").then((dorj) => {
-      setMdata(dorj.data);
-      console.log("?????????", dorj.data);
-      // Object.keys(dorj.data).map((el, key) => {
-      //   console.log("el", el, "key", key, "==>", dorj.data[el].НэгжҮнэ);
-      //   setBurger({
-      //     ...burger,
-      //     ingredients: {
-      //       ...burger.ingredients,
-      //       bacon: "1",
-      //     },
-      //   });
-      // });
-      // console.log("haha", Mdata);
-    });
-    console.log("!!!!!!!!!!!!", [burger.baseTatah]);
-  }, [burger.baseTatah]);
-  // const poloDoh = () => {
-  //   if (burger.zogsooh === 0) {
-  //     axios.get("/orders.json").then((dorj) => {
-  //       console.log(dorj.data);
-  //       setMdata(dorj.data);
-  //       console.log(Mdata);
-  //       // Object.keys(dorj.data).map((elw) => {
-  //       //   console.log("==>", elw);
-  //       //   const dugar = elw;
-  //       //   // setBurger({ ...burger, saving: false, finished: true, error: null });
-  //       //   setMdata({
-  //       //     ...Mdata,
-  //       //     [dorj.data[elw].Загвар]: dorj.data[elw],
-  //       //   });
-  //       // });
-  //       // const as = dorj.data[1];
-  //       // setMdata({
-  //       //   as,
-  //       // });
-  //     });
-  //     console.log("mdata", Mdata);
-  //     setBurger({ ...burger, zogsooh: "1" });
-  //   }
-  // };
+
   const toggle = () => {
     setBurger({ ...burger, saving: !burger.saving });
   };
+
   const saveBurger = (newOrder, token) => {
     // Spinner ergelduulne
     setBurger({ ...burger, saving: true });
@@ -84,8 +48,6 @@ export const BurgerStore = (props) => {
   };
 
   const clearBurger = () => {
-    console.log("lalalar");
-    setBurger({ ...burger, baseTatah: "Tat" });
     setBurger(initialState);
   };
 
@@ -100,6 +62,7 @@ export const BurgerStore = (props) => {
       purchasing: true,
     });
   };
+
   const removeIngredient = (orts) => {
     const newPrice = burger.totalPrice - INGREDIENT_PRICES[orts];
     setBurger({
@@ -117,13 +80,11 @@ export const BurgerStore = (props) => {
     <BurgerContext.Provider
       value={{
         burger,
-        Mdata,
         addIngredient,
         removeIngredient,
         saveBurger,
         clearBurger,
         toggle,
-        // poloDoh,
       }}
     >
       {props.children}

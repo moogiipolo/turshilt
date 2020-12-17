@@ -18,10 +18,10 @@ const ShippingPage = (props) => {
 
   return (
     <div className={css.ShippingPage}>
-      <p style={{ fontSize: "16px" }}>
-        <strong>Таны захиалга</strong>
+      <p style={{ fontSize: "24px" }}>
+        <strong>Таны захиалга амттай байх болно гэж найдаж байна...</strong>
       </p>
-      <p style={{ fontSize: "12px" }}>
+      <p style={{ fontSize: "24px" }}>
         <strong>Дүн : {ctx.burger.totalPrice}₮</strong>
       </p>
 
@@ -36,7 +36,7 @@ const ShippingPage = (props) => {
       <Button
         daragdsan={showContactData}
         btnType="Success"
-        text="АЖЛЫН МЭДЭЭЛЭЛ ОРУУЛАХ"
+        text="ХҮРГЭЛТИЙН МЭДЭЭЛЭЛ ОРУУЛАХ"
       />
 
       <Route path="/ship/contact">

@@ -6,18 +6,17 @@ const Order = props => {
   return (
     <div className={css.Order}>
       <p>
-        Нэр: 
-        {props.order.Нэр}, {" "}
-        {props.order.Тайлбар},{props.order.Ангилал}, Тоо :{" "}
-        {props.order.Тоо}{props.order.ХэмжихНэгж}
+        Орц : Гахайн мах : {props.order.orts.bacon}, Салад :{" "}
+        {props.order.orts.salad}, Үхрийн мах : {props.order.orts.meet}, Бяслаг :{" "}
+        {props.order.orts.cheese}
       </p>
-      {/* <p>
+      <p>
         Хаяг : {props.order.hayag.name} | {props.order.hayag.street} |
         {props.order.hayag.city}
       </p>
       <p>
-        өҮнийн дүн : <strong>{props.order.dun}₮</strong>
-      </p> */}
+        Үнийн дүн : <strong>{props.order.dun}₮</strong>
+      </p>
     </div>
   );
 };

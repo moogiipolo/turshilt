@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "../axios-orders";
-import Logo from "../components/Logo"
+
 const OrderContext = React.createContext();
 
 const initialState = {
@@ -16,9 +16,7 @@ export const OrderStore = (props) => {
     // Захиалгыг татаж эхлэлээ гэдгийг мэдэгдэнэ.
     // Энийг хүлээж аваад Spinner ажиллаж эхлэнэ.
     setState({ ...state, loading: true });
-    // const [husr, setHusr] = useState(userId);
-   
-    // setHusr( "агуулах");
+
     axios
       .get(`orders.json?&auth=${token}&orderBy="userId"&equalTo="${userId}"`)
       .then((response) => {
@@ -27,12 +25,9 @@ export const OrderStore = (props) => {
       })
       .catch((err) => setState({ ...state, error: err }));
   };
-  
+
   return (
-   
-    
     <OrderContext.Provider value={{ state, loadOrders }}>
-      <Logo />
       {props.children}
     </OrderContext.Provider>
   );

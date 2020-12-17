@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import BurgerContext from "../../context/BurgerContext";
 import BuildControl from "../BuildControl";
 import css from "./style.module.css";
@@ -6,12 +6,7 @@ import css from "./style.module.css";
 const BuildControls = (props) => {
   const burgerContext = useContext(BurgerContext);
   const disabledIngredients = { ...burgerContext.burger.ingredients };
-  // if (burgerContext.burger.zogsooh === 0) {
-  //   console.log("huulaad ehelsen shuu");
-  //   burgerContext.poloDoh();
-  // } else {
-  //   console.log("else");
-  // }
+
   for (let key in disabledIngredients) {
     disabledIngredients[key] = disabledIngredients[key] <= 0;
   }
@@ -22,16 +17,6 @@ const BuildControls = (props) => {
         Бургерийн үнэ : <strong>{burgerContext.burger.totalPrice}</strong>
       </p>
 
-      {/* {Object.keys(BurgerContext.Mdata).map((el, key) => {
-        console.log(
-          "el",
-          el,
-          "key",
-          key,
-          "==>"
-          // burgerContext.Mdata[el].НэгжҮнэ
-        );
-      })} */}
       {Object.keys(burgerContext.burger.ingredientNames).map((el) => (
         <BuildControl
           key={el}
@@ -40,7 +25,7 @@ const BuildControls = (props) => {
           orts={burgerContext.burger.ingredientNames[el]}
         />
       ))}
-      {/* {console.log(burgerContext.Mdata[1])} */}
+
       <button
         onClick={props.showConfirmModal}
         disabled={!burgerContext.burger.purchasing}

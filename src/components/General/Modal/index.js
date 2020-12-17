@@ -6,6 +6,7 @@ const Modal = props => {
   return (
     <div>
       <Shadow show={props.show} darahad={props.closeConfirmModal} />
+
       <div
         style={{
           transform: props.show ? "translateY(0)" : "translateY(-100vh)",

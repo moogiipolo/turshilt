@@ -5,8 +5,11 @@ import BurgerContext from "../../context/BurgerContext";
 
 const Burger = (props) => {
   const burgerContext = useContext(BurgerContext);
+
+  console.log("hello");
+
   return useMemo(() => {
-    // console.log("Burger rendered!!!!....");
+    console.log("Burger rendered!!!!....");
 
     //{bacon: 2, cheese: 2, meat: 1, salad: 1}
     const items = Object.entries(burgerContext.burger.ingredients);
