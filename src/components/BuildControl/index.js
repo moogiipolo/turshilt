@@ -13,13 +13,13 @@ const BuildControl = (props) => {
         onClick={() => burgerContext.removeIngredient(props.type)}
         className={css.Less}
       >
-        Хасах
+        -
         </button>
       <button
         onClick={() => burgerContext.addIngredient(props.type)}
         className={css.More}
       >
-        Нэмэх
+        +
       </button>
       <button className={css.More}>{props.baigaaToo},__{props.tegToo}</button>
     </div>

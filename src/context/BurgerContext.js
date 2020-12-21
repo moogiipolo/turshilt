@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios-orders";
 
 const BurgerContext = React.createContext();
-
+    // axios.get("/orders.json")
+    // .then(resp => {
+    //   const popop = (resp.data)
+    //   console.log("ehleed uguuch", popop);
+    // })  
 const INGREDIENT_PRICES = { salad: 150, cheese: 250, bacon: 800, meat: 1500 };
-
 const initialState = {
   ingredients: {
     salad: 0,
@@ -35,9 +38,9 @@ export const BurgerStore = (props) => {
       .then((response) => {
         setTuuver(response.data);
         setBurger({...burger, effect: false});
-        // console.log("==>",tuuver);
+        // console.log("contex  ==>",tuuver);
       })
-  }, [burger.effect]);
+  }, [burger.effect ]);
 
   const toggle = () => {
     setBurger({ ...burger, saving: !burger.saving });

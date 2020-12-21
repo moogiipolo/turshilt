@@ -5,31 +5,39 @@ import BurgerContext from "../../context/BurgerContext";
 
 const Burger = (props) => {
   const burgerContext = useContext(BurgerContext);
-
-  return useMemo(() => {
+  const dondog = {...burgerContext.tuuver};
+  const dondg = {...burgerContext.burger};
+  // console.log(dondog);
+    console.log("hkh", dondog);
+    // Object.keys(dondog).map((el, key) => {
+    //   console.log("ashguidee", el,  dondog[el].НийтҮнэ);
+    // });
     
     //{bacon: 2, cheese: 2, meat: 1, salad: 1}
-    const items = Object.entries(burgerContext.burger.ingredients);
-
+    const items = Object.keys(dondog);
     let content = [];
+    // console.log(content);
+    // console.log("ooo", burgerContext.burger.ingredients);
+    console.log("map,el => ", dondog);
     items.map((el) => {
-      for (let i = 0; i < el[1]; i++)
-        content.push(
-          <BurgerIngredient key={`${el[0]}${i + 1}`} type={el[0]} />
-        );
+      // console.log("el => ", el);
+         
+     
+        if (dondog[el].НийтҮнэ !== 0)
+        {content.push(
+          <BurgerIngredient key={el} type={el} />
+        );}
     });
 
-    if (content.length === 0)
-      content = <p>Хачиртай талхныхаа орцыг сонгоно уу...</p>;
+    if (dondg.totalPrice === 0)
+      content = <p>Ажилд хэрэглэх багаж, материалыг сонгоно уу...</p>;
 
     return (
       <div className={css.Burger}>
-        <BurgerIngredient type="bread-top" />
         {content}
-        <BurgerIngredient type="bread-bottom" />
       </div>
     );
-  }, [burgerContext.burger.ingredients]);
+
 };
 
 export default Burger;

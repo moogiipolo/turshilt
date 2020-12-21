@@ -25,9 +25,7 @@ const BurgerPage = (props) => {
       <Modal closeConfirmModal={closeConfirmModal} show={confirmOrder}>
         <OrderSummary onCancel={closeConfirmModal} onContinue={continueOrder} />
       </Modal>
-
       <Burger />
-
       <BuildControls showConfirmModal={showConfirmModal} />
     </div>
   );
