@@ -74,7 +74,6 @@ const App = (props) => {
       }
     }
   }, []);
-
   return (
     <div>
       <Toolbar toggleSideBar={toggleSideBar} />

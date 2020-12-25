@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import BurgerContext from "../../context/BurgerContext";
 
-import css from "./style.module.css";
   
 const BurgerIngredient = props => {
   const burgerContext = useContext(BurgerContext);

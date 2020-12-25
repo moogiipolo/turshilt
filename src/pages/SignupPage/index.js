@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Button from "../../components/General/Button";
 import css from "./style.module.css";
 import Spinner from "../../components/General/Spinner";
@@ -12,10 +12,6 @@ const Signup = (props) => {
   const [password2, setPassword2] = useState("");
   const [error, setError] = useState("");
 
-  // useEffect(() => {
-  //   // check email in real time
-  // }, [email, password1]);
-
   const signup = () => {
     if (password1 === password2) {
       ctx.signupUser(email, password1);
@@ -27,7 +23,6 @@ const Signup = (props) => {
   return (
     <div className={css.Signup}>
       {ctx.state.userId && <Redirect to="/" />}
-
       <h1>Бүртгэлийн форм</h1>
       <div>Та өөрийн мэдээллээ оруулна уу</div>
       <input

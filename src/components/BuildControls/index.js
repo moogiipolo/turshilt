@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import BurgerContext from "../../context/BurgerContext";
 import BuildControl from "../BuildControl";
 import BuildHaih from "../BuildHaih";
@@ -6,26 +6,39 @@ import css from "./style.module.css";
 
 const BuildControls = (props) => {
   const burgerContext = useContext(BurgerContext);
-  const Tuuver = {...burgerContext.tuuver};
   const disabledIngredients = { ...burgerContext.tuuver};
-
-  for (let key in Tuuver) {
+  const [bicHih, setBichih] = useState("");
+  const [searchleh, setSearchleh] = useState(burgerContext.tuuver);
+  
+  for (let key in burgerContext.tuuver) {
     disabledIngredients[key].if = disabledIngredients[key].НийтҮнэ <= 0;
     }
+    const changeBichih = e => {
+      setBichih(e.target.value); 
+    setSearchleh( burgerContext.tuuver.filter( el => 
+      el.Нэр.toLowerCase().includes(bicHih.toLowerCase())
+      ))
+  };
   return (
     <div className={css.BuildControls}>
         <p>Бургерийн үнэ : <strong>{burgerContext.burger.totalPrice}</strong></p>
-      <BuildHaih />
-      {Object.keys(Tuuver).map((el) => (
+      {/* <BuildHaih /> */}
+      <input
+                  type="text"
+                  placeholder='Хайх'
+                  onChange={changeBichih}
+                />
+                {console.log("searchleh => ", searchleh, "bichih => ", bicHih)}
+      {Object.keys(searchleh).map((el) => (
         (<BuildControl
           key={el}
           disabled={disabledIngredients}
           type={el}
-          ortsa={Tuuver[el].Нэр}
+          ortsa={searchleh[el].Нэр}
           ortsb={", "}
-          ortsc={Tuuver[el].Тайлбар}
-          baigaaToo={Tuuver[el].Тоо}
-          tegToo={Tuuver[el].НийтҮнэ}
+          ortsc={searchleh[el].Тайлбар}
+          baigaaToo={searchleh[el].Тоо}
+          tegToo={searchleh[el].НийтҮнэ}
         />)
       
       ))}

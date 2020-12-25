@@ -3,8 +3,7 @@ import Spinner from "../../components/General/Spinner";
 import Order from "../../components/Order";
 import OrderContext from "../../context/OrdersContext";
 import UserContext from "../../context/UserContext";
-
-const OrderPage = (props) => {
+const OrderPage = () => {
   useEffect(() => {
     orderContext.loadOrders(userContext.state.userId, userContext.state.token);
   }, []);

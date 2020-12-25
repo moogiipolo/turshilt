@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "../axios-orders";
 
 const BurgerContext = React.createContext();
@@ -7,7 +7,6 @@ const BurgerContext = React.createContext();
     //   const popop = (resp.data)
     //   console.log("ehleed uguuch", popop);
     // })  
-const INGREDIENT_PRICES = { salad: 150, cheese: 250, bacon: 800, meat: 1500 };
 const initialState = {
   ingredients: {
     salad: 0,
