@@ -8,7 +8,7 @@ const Burger = (props) => {
   const dondog = {...burgerContext.tuuver};
   const dondg = {...burgerContext.burger};
   // console.log(dondog);
-    console.log("hkh", dondog);
+    // console.log("hkh", dondog);
     // Object.keys(dondog).map((el, key) => {
     //   console.log("ashguidee", el,  dondog[el].НийтҮнэ);
     // });
@@ -18,7 +18,7 @@ const Burger = (props) => {
     let content = [];
     // console.log(content);
     // console.log("ooo", burgerContext.burger.ingredients);
-    console.log("map,el => ", dondog);
+    // console.log("map,el => ", dondog);
     items.map((el) => {
       // console.log("el => ", el);
          

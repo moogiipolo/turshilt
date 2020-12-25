@@ -10,6 +10,8 @@ import Logout from "../../components/Logout";
 import { BurgerStore } from "../../context/BurgerContext";
 import { OrderStore } from "../../context/OrdersContext";
 import UserContext from "../../context/UserContext";
+import axios from "../../axios-orders";
+import Spinner from "../../components/General/Spinner";
 
 const BurgerPage = React.lazy(() => {
   return import("../BurgerPage");
@@ -25,12 +27,31 @@ const SignupPage = React.lazy(() => {
 
 const App = (props) => {
   const userCtx = useContext(UserContext);
-  const [showSidebar, setShowSidebar] = useState(false);
-
+  const [showSidebar, setShowSidebar] = useState(true);
+  const [ddata, setDdata] = useState(true);
   const toggleSideBar = () => {
     setShowSidebar((prevShowSidebar) => !prevShowSidebar);
   };
 
+  const [tuuver, setTuuver] = useState([]);
+  useEffect(() => {
+    axios
+    .get('/orders.json')
+    .then(response => {
+      setTuuver(response.data)
+    })
+    .catch(error => {
+      alert("sda yumaa")
+    })
+    .finally(() => {
+      setDdata(false);
+      // console.log("huleehaa", tuuver, ddata)
+      
+    });
+  }, []);
+  
+
+  //  console.log("app derr",tuuver);
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
@@ -61,7 +82,8 @@ const App = (props) => {
       <SideBar showSidebar={showSidebar} toggleSideBar={toggleSideBar} />
 
       <main className={css.Content}>
-        <BurgerStore>
+        {ddata ? (<Spinner /> ) : (
+          <BurgerStore gigi={tuuver}>
           <Suspense fallback={<div>Түр хүлээнэ үү...</div>}>
             {userCtx.state.userId ? (
               <Switch>
@@ -83,6 +105,8 @@ const App = (props) => {
             )}
           </Suspense>
         </BurgerStore>
+        )}
+        
       </main>
     </div>
   );

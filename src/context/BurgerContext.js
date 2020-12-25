@@ -31,21 +31,26 @@ const initialState = {
 
 export const BurgerStore = (props) => {
   const [burger, setBurger] = useState(initialState);
-  const [tuuver, setTuuver] = useState();
-  useEffect(() => {
-    axios
-      .get("/orders.json")
-      .then((response) => {
-        setTuuver(response.data);
-        setBurger({...burger, effect: false});
-        // console.log("contex  ==>",tuuver);
-      })
-  }, [burger.effect ]);
+  const [tuuver, setTuuver] = useState(props.gigi);
+  // useEffect(() => {
+  //   axios
+  //   .get('/orders.json')
+  //   .then(response => {
+  //     setTuuver(response.data)
+  //   })
+  //   .catch(error => {
+  //     alert("sda yumaa")
+  //   })
+  //   .finally(() => {
+  //     // console.log("huleeh", tuuver)
+      
+  //   })
+  // }, []);
 
   const toggle = () => {
     setBurger({ ...burger, saving: !burger.saving });
   };
-
+  // console.log("t", tuuver, "b", burger);
   const saveBurger = (newOrder, token) => {
     // Spinner ergelduulne
     setBurger({ ...burger, saving: true });

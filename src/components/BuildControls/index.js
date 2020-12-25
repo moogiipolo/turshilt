@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import BurgerContext from "../../context/BurgerContext";
 import BuildControl from "../BuildControl";
+import BuildHaih from "../BuildHaih";
 import css from "./style.module.css";
 
 const BuildControls = (props) => {
@@ -11,17 +12,11 @@ const BuildControls = (props) => {
   for (let key in Tuuver) {
     disabledIngredients[key].if = disabledIngredients[key].НийтҮнэ <= 0;
     }
-   return (
+  return (
     <div className={css.BuildControls}>
-      <p>
-        Бургерийн үнэ : <strong>{burgerContext.burger.totalPrice}</strong>
-      </p>
-      {/* {console.log(Tuuver)} */}
+        <p>Бургерийн үнэ : <strong>{burgerContext.burger.totalPrice}</strong></p>
+      <BuildHaih />
       {Object.keys(Tuuver).map((el) => (
-        // console.log("==>", el),
-        // ("Tuuver", Tuuver[el].Нэр),
-        // console.log("==>", el),
-      {/* {Object.keys(burgerContext.burger.ingredientNames).map((el) => ( */},{/* //))} */},
         (<BuildControl
           key={el}
           disabled={disabledIngredients}
