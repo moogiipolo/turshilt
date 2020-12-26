@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import BurgerContext from "../../context/BurgerContext";
 import BuildControl from "../BuildControl";
 import BuildHaih from "../BuildHaih";
@@ -9,16 +9,20 @@ const BuildControls = (props) => {
   const disabledIngredients = { ...burgerContext.tuuver};
   const [bicHih, setBichih] = useState("");
   const [searchleh, setSearchleh] = useState(burgerContext.tuuver);
-  
+ 
   for (let key in burgerContext.tuuver) {
     disabledIngredients[key].if = disabledIngredients[key].НийтҮнэ <= 0;
     }
     const changeBichih = e => {
       setBichih(e.target.value); 
-    setSearchleh( burgerContext.tuuver.filter( el => 
-      el.Нэр.toLowerCase().includes(bicHih.toLowerCase())
-      ))
+    // setSearchleh( burgerContext.tuuver.filter( el => 
+    //   el.Нэр.toLowerCase().includes(bicHih.toLowerCase())
+    //   ))
   };
+  useEffect(() => {
+    setSearchleh( burgerContext.tuuver.filter( el => 
+      el.Нэр.toLowerCase().includes(bicHih.toLowerCase())))
+  }, [bicHih]);
   return (
     <div className={css.BuildControls}>
         <p>Бургерийн үнэ : <strong>{burgerContext.burger.totalPrice}</strong></p>

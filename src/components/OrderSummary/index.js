@@ -9,11 +9,11 @@ const OrderSummary = (props) => {
       <h3>Таны захиалга</h3>
       <p>Таны сонгосон орцууд: </p>
       <ul>
-        {Object.keys(ctx.burger.ingredients).map((el) => (
+        {/* {Object.keys(ctx.burger.ingredients).map((el) => (
           <li key={el}>
             {ctx.burger.ingredientNames[el]} : {ctx.burger.ingredients[el]}
           </li>
-        ))}
+        ))} */}
       </ul>
       <p>
         <strong>Захиалгын дүн: {ctx.burger.totalPrice}₮ </strong>

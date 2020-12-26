@@ -8,53 +8,19 @@ const BurgerContext = React.createContext();
     //   console.log("ehleed uguuch", popop);
     // })  
 const initialState = {
-  ingredients: {
-    salad: 0,
-    cheese: 0,
-    bacon: 0,
-    meat: 0,
-  },
   totalPrice: 0,
   purchasing: false,
-  ingredientNames: {
-    bacon: "Гахайн мах",
-    cheese: "Бяслаг",
-    meat: "Үхрийн мах",
-    salad: "Салад",
-  },
   effect: true,
   saving: false,
   finished: false,
   error: null,
 };
-
 export const BurgerStore = (props) => {
   const [burger, setBurger] = useState(initialState);
   const [tuuver, setTuuver] = useState(props.gigi);
-  // useEffect(() => {
-  //   axios
-  //   .get('/orders.json')
-  //   .then(response => {
-  //     setTuuver(response.data)
-  //   })
-  //   .catch(error => {
-  //     alert("sda yumaa")
-  //   })
-  //   .finally(() => {
-  //     // console.log("huleeh", tuuver)
-      
-  //   })
-  // }, []);
-
-  const toggle = () => {
-    setBurger({ ...burger, saving: !burger.saving });
-  };
-  // console.log("t", tuuver, "b", burger);
+  const toggle = () => {setBurger({ ...burger, saving: !burger.saving }); };
   const saveBurger = (newOrder, token) => {
-    // Spinner ergelduulne
     setBurger({ ...burger, saving: true });
-
-    // Firebase ruu hadgalna
     axios
       .post(`orders.json?auth=${token}`, newOrder)
       .then((response) => {
@@ -64,11 +30,7 @@ export const BurgerStore = (props) => {
         setBurger({ ...burger, saving: false, finished: true, error });
       });
   };
-
-  const clearBurger = () => {
-    setBurger(initialState);
-  };
-
+  const clearBurger = () => { setBurger(initialState);};
   const addIngredient = (orts) => {
     if (tuuver[orts].Тоо !== tuuver[orts].НийтҮнэ)
     {
@@ -78,8 +40,8 @@ export const BurgerStore = (props) => {
       purchasing: true,
     });
     setTuuver({
-        ...tuuver,
-        [orts]: {
+      ...tuuver,
+      [orts]: {
           userId: tuuver[orts].userId,
           Ангилал: tuuver[orts].Ангилал,
           Брэнд: tuuver[orts].Брэнд,
@@ -94,11 +56,10 @@ export const BurgerStore = (props) => {
           Эвдэрэл: tuuver[orts].Эвдэрэл,
           Нэр: tuuver[orts].Нэр,
           if: true,
-          НийтҮнэ: tuuver[orts].НийтҮнэ + 1,}
+      НийтҮнэ: tuuver[orts].НийтҮнэ + 1,}
       },
     );}
-    };
-
+  };
   const removeIngredient = (orts) => {
     const newPrice = burger.totalPrice - tuuver[orts].НэгжҮнэ;
       setBurger({
@@ -126,8 +87,7 @@ export const BurgerStore = (props) => {
           НийтҮнэ: tuuver[orts].НийтҮнэ - 1,}
       },
     );
-    };
-
+  };
   return (
     <BurgerContext.Provider
       value={{
