@@ -36,20 +36,18 @@ const App = (props) => {
   const [tuuver, setTuuver] = useState([]);
   useEffect(() => {
     axios
-    .get('/orders.json')
-    .then(response => {
-      setTuuver(response.data)
-    })
-    .catch(error => {
-      alert("sda yumaa")
-    })
-    .finally(() => {
-      setDdata(false);
-      // console.log("huleehaa", tuuver, ddata)
-      
-    });
+      .get("/orders.json")
+      .then((response) => {
+        setTuuver(Object.entries(response.data));
+      })
+      .catch((error) => {
+        alert("sda yumaa");
+      })
+      .finally(() => {
+        setDdata(false);
+        // console.log("huleehaa", tuuver, ddata)
+      });
   }, []);
-  
 
   //  console.log("app derr",tuuver);
   useEffect(() => {
@@ -81,31 +79,32 @@ const App = (props) => {
       <SideBar showSidebar={showSidebar} toggleSideBar={toggleSideBar} />
 
       <main className={css.Content}>
-        {ddata ? (<Spinner /> ) : (
+        {ddata ? (
+          <Spinner />
+        ) : (
           <BurgerStore gigi={tuuver}>
-          <Suspense fallback={<div>Түр хүлээнэ үү...</div>}>
-            {userCtx.state.userId ? (
-              <Switch>
-                <Route path="/logout" component={Logout} />
-                <Route path="/orders">
-                  <OrderStore>
-                    <OrderPage />
-                  </OrderStore>
-                </Route>
-                <Route path="/ship" component={ShippingPage} />
-                <Route path="/" component={BurgerPage} />
-              </Switch>
-            ) : (
-              <Switch>
-                <Route path="/signup" component={SignupPage} />
-                <Route path="/login" component={LoginPage} />
-                <Redirect to="/login" />
-              </Switch>
-            )}
-          </Suspense>
-        </BurgerStore>
+            <Suspense fallback={<div>Түр хүлээнэ үү...</div>}>
+              {userCtx.state.userId ? (
+                <Switch>
+                  <Route path="/logout" component={Logout} />
+                  <Route path="/orders">
+                    <OrderStore>
+                      <OrderPage />
+                    </OrderStore>
+                  </Route>
+                  <Route path="/ship" component={ShippingPage} />
+                  <Route path="/" component={BurgerPage} />
+                </Switch>
+              ) : (
+                <Switch>
+                  <Route path="/signup" component={SignupPage} />
+                  <Route path="/login" component={LoginPage} />
+                  <Redirect to="/login" />
+                </Switch>
+              )}
+            </Suspense>
+          </BurgerStore>
         )}
-        
       </main>
     </div>
   );

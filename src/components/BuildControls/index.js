@@ -1,50 +1,39 @@
 import React, { useContext, useState, useEffect } from "react";
 import BurgerContext from "../../context/BurgerContext";
 import BuildControl from "../BuildControl";
-import BuildHaih from "../BuildHaih";
 import css from "./style.module.css";
 
 const BuildControls = (props) => {
   const burgerContext = useContext(BurgerContext);
-  const disabledIngredients = { ...burgerContext.tuuver};
-  const [bicHih, setBichih] = useState("");
-  const [searchleh, setSearchleh] = useState(burgerContext.tuuver);
- 
+  const disabledIngredients = { ...burgerContext.tuuver };
   for (let key in burgerContext.tuuver) {
-    disabledIngredients[key].if = disabledIngredients[key].НийтҮнэ <= 0;
-    }
-    const changeBichih = e => {
-      setBichih(e.target.value); 
-    // setSearchleh( burgerContext.tuuver.filter( el => 
-    //   el.Нэр.toLowerCase().includes(bicHih.toLowerCase())
-    //   ))
+    // console.log(
+    //   disabledIngredients[key][1].if,
+    //   disabledIngredients[key][1].НийтҮнэ
+    // );
+    disabledIngredients[key][1].if = disabledIngredients[key][1].НийтҮнэ <= 0;
+  }
+  const changeBichih = (e) => {
+    burgerContext.searchHiih(e.target.value);
+    // setBichih(e.target.value);
   };
-  useEffect(() => {
-    setSearchleh( burgerContext.tuuver.filter( el => 
-      el.Нэр.toLowerCase().includes(bicHih.toLowerCase())))
-  }, [bicHih]);
   return (
     <div className={css.BuildControls}>
-        <p>Бургерийн үнэ : <strong>{burgerContext.burger.totalPrice}</strong></p>
-      {/* <BuildHaih /> */}
-      <input
-                  type="text"
-                  placeholder='Хайх'
-                  onChange={changeBichih}
-                />
-                {console.log("searchleh => ", searchleh, "bichih => ", bicHih)}
-      {Object.keys(searchleh).map((el) => (
-        (<BuildControl
-          key={el}
+      <p>
+        Үнэ : <strong>{burgerContext.burger.totalPrice}</strong>
+      </p>
+      <input type="text" placeholder="Хайх" onChange={changeBichih} />
+      {Object.entries(burgerContext.tuuver).map((el, key) => (
+        <BuildControl
+          key={key}
           disabled={disabledIngredients}
-          type={el}
-          ortsa={searchleh[el].Нэр}
+          type={key}
+          ortsa={burgerContext.tuuver[key][1].Нэр}
           ortsb={", "}
-          ortsc={searchleh[el].Тайлбар}
-          baigaaToo={searchleh[el].Тоо}
-          tegToo={searchleh[el].НийтҮнэ}
-        />)
-      
+          ortsc={" "}
+          baigaaToo={burgerContext.tuuver[key][1].Тоо}
+          tegToo={burgerContext.tuuver[key][1].НийтҮнэ}
+        />
       ))}
       <button
         onClick={props.showConfirmModal}
