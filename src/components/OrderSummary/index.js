@@ -9,11 +9,14 @@ const OrderSummary = (props) => {
       <h3>Таны захиалга</h3>
       <p>Таны сонгосон орцууд: </p>
       <ul>
-        {/* {Object.keys(ctx.burger.ingredients).map((el) => (
-          <li key={el}>
-            {ctx.burger.ingredientNames[el]} : {ctx.burger.ingredients[el]}
-          </li>
-        ))} */}
+        {/* {Object.keys(ctx.tuuver).map(
+          (el) => (
+            // <li key={el}>
+            //   {ctx.burger.ingredientNames[el]} : {ctx.burger.ingredients[el]}
+            // </li>
+            console.log("haha", el), (<p>sda yum aa</p>)
+          )
+        )} */}
       </ul>
       <p>
         <strong>Захиалгын дүн: {ctx.burger.totalPrice}₮ </strong>

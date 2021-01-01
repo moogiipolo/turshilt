@@ -7,11 +7,8 @@ const BuildControls = (props) => {
   const burgerContext = useContext(BurgerContext);
   const disabledIngredients = { ...burgerContext.tuuver };
   for (let key in burgerContext.tuuver) {
-    // console.log(
-    //   disabledIngredients[key][1].if,
-    //   disabledIngredients[key][1].НийтҮнэ
-    // );
-    disabledIngredients[key][1].if = disabledIngredients[key][1].НийтҮнэ <= 0;
+    disabledIngredients[key][1][1].if =
+      disabledIngredients[key][1][1].НийтҮнэ <= 0;
   }
   const changeBichih = (e) => {
     burgerContext.searchHiih(e.target.value);
@@ -23,16 +20,20 @@ const BuildControls = (props) => {
         Үнэ : <strong>{burgerContext.burger.totalPrice}</strong>
       </p>
       <input type="text" placeholder="Хайх" onChange={changeBichih} />
-      {Object.entries(burgerContext.tuuver).map((el, key) => (
+      {Object.entries(burgerContext.tuuverS).map((el, key) => (
         <BuildControl
           key={key}
           disabled={disabledIngredients}
-          type={key}
-          ortsa={burgerContext.tuuver[key][1].Нэр}
+          type={burgerContext.tuuverS[key][0]}
+          ortsa={burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1].Нэр}
           ortsb={", "}
           ortsc={" "}
-          baigaaToo={burgerContext.tuuver[key][1].Тоо}
-          tegToo={burgerContext.tuuver[key][1].НийтҮнэ}
+          baigaaToo={
+            burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1].Тоо
+          }
+          tegToo={
+            burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1].НийтҮнэ
+          }
         />
       ))}
       <button

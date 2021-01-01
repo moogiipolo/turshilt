@@ -12,14 +12,13 @@ const BuildControl = (props) => {
         {props.ortsc}
       </div>
       <button
-        disabled={props.disabled[props.type][1].if}
+        disabled={props.disabled[props.type][1][1].if}
         onClick={() => burgerContext.removeIngredient(props.type)}
         className={css.Less}
       >
         -
       </button>
       <button
-        disabled={props.har}
         onClick={() => burgerContext.addIngredient(props.type)}
         className={css.More}
       >
