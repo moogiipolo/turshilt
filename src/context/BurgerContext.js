@@ -14,6 +14,19 @@ export const BurgerStore = (props) => {
   const [burger, setBurger] = useState(initialState);
   const [tuuver, setTuuver] = useState(props.firebase);
   const [tuuverS, setTuuverS] = useState(tuuver);
+  // useEffect(() => {
+  //   tuuver.map((el, key) => {
+  //     console.log(tuuver[key]);
+  //     setTuuver({
+  //       ...tuuver,
+  //       [key]: [
+  //         ...[tuuver[key][0]],
+  //         ...[tuuver[key][1]],
+  //         { label: tuuver[key][1][1].Ангилал },
+  //       ],
+  //     });
+  //   });
+  // }, []);
   const saveBurger = (newOrder, token) => {
     setBurger({ ...burger, saving: true });
     axios
@@ -69,7 +82,6 @@ export const BurgerStore = (props) => {
         ],
       });
     }
-    console.log(tuuver);
   };
   const removeIngredient = (orts) => {
     const newPrice = burger.totalPrice - tuuver[orts][1][1].НэгжҮнэ;
@@ -102,7 +114,6 @@ export const BurgerStore = (props) => {
         ],
       ],
     });
-    console.log(tuuver);
   };
   return (
     // console.log(tuuver.q001),
