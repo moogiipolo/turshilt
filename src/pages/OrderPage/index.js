@@ -16,8 +16,9 @@ const OrderPage = () => {
       {orderContext.state.loading ? (
         <Spinner />
       ) : (
-        orderContext.state.orders.map((el) => (
-          <Order key={el[0]} order={el[1]} />
+        orderContext.state.orders.map((el, key) => (
+          <Order key={key + 1} order={el[1]} />
+          // , console.log(key + 1, el)
         ))
       )}
     </div>

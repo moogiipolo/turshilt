@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "../axios-orders";
+import UserContext from "../context/UserContext";
 
 const BurgerContext = React.createContext();
 const initialState = {
@@ -11,32 +12,44 @@ const initialState = {
   error: null,
 };
 export const BurgerStore = (props) => {
+  const userCtx = useContext(UserContext);
   const [burger, setBurger] = useState(initialState);
   const [tuuver, setTuuver] = useState(props.firebase);
   const [tuuverS, setTuuverS] = useState(tuuver);
-  // useEffect(() => {
-  //   tuuver.map((el, key) => {
-  //     console.log(tuuver[key]);
-  //     setTuuver({
-  //       ...tuuver,
-  //       [key]: [
-  //         ...[tuuver[key][0]],
-  //         ...[tuuver[key][1]],
-  //         { label: tuuver[key][1][1].Ангилал },
-  //       ],
-  //     });
-  //   });
-  // }, []);
+  const [hevlehEh, setHevlehEh] = useState(tuuver);
   const saveBurger = (newOrder, token) => {
     setBurger({ ...burger, saving: true });
-    axios
-      .post(`orders.json?auth=${token}`, newOrder)
-      .then((response) => {
-        setBurger({ ...burger, saving: false, finished: true, error: null });
-      })
-      .catch((error) => {
-        setBurger({ ...burger, saving: false, finished: true, error });
-      });
+    Object.keys(tuuver).map((el, orts) => {
+      if (tuuver[orts][1][1].НийтҮнэ !== 0) {
+        const hevl = {
+          Ангилал: tuuver[orts][1][1].Ангилал,
+          ДагалдахХэрэгсэл: tuuver[orts][1][1].ДагалдахХэрэгсэл,
+          Загвар: tuuver[orts][1][1].Загвар,
+          Линк: tuuver[orts][1][1].Линк,
+          НэгжҮнэ: tuuver[orts][1][1].НэгжҮнэ,
+          Тоо: tuuver[orts][1][1].НийтҮнэ,
+          Хэзээ: Date(),
+          ХэмжихНэгж: tuuver[orts][1][1].ХэмжихНэгж,
+          Эвдэрэл: tuuver[orts][1][1].Эвдэрэл,
+          Нэр: tuuver[orts][1][1].Нэр,
+          if: true,
+          userId: userCtx.state.userId,
+          НийтҮнэ: 0,
+          hayag: newOrder.hayag,
+        };
+        axios
+          .post(`orders.json?auth=${token}`, hevl)
+          .then((response) => {
+            // setBurger({ ...burger, saving: false, finished: true, error: null });
+          })
+          .catch((error) => {
+            setBurger({ ...burger, saving: false, finished: true, error });
+          });
+      } else {
+        console.log("whaha");
+      }
+    });
+    setBurger({ ...burger, saving: false, finished: true, error: null });
   };
   const clearBurger = () => {
     setBurger(initialState);

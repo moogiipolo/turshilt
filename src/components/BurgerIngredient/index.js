@@ -10,6 +10,9 @@ const BurgerIngredient = (props) => {
       {burgerContext.tuuver[props.type][1][1].Ангилал},{" "}
       {burgerContext.tuuver[props.type][1][1].НийтҮнэ}
       {burgerContext.tuuver[props.type][1][1].ХэмжихНэгж}
+      <button onClick={() => burgerContext.removeIngredient(props.type)}>
+        -
+      </button>
     </div>
   );
 };

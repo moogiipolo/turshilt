@@ -11,53 +11,40 @@ const ContactData = (props) => {
   const userCtx = useContext(UserContext);
   const ctx = useContext(BurgerContext);
   const [name, setName] = useState();
-  const [city, setCity] = useState();
+  const [project, setProject] = useState();
   const [street, setStreet] = useState();
-
   const dunRef = useRef();
-
   useEffect(() => {
     if (ctx.burger.finished && !ctx.burger.error) {
       history.replace("/orders");
     }
-
     return () => {
       // Цэвэрлэгч функц : Захиалгыг буцаагаад хоосолно. Дараачийн захиалгад бэлтгэнэ гэсэн үг.
       ctx.clearBurger();
     };
   }, [ctx.burger.finished]);
-
   const changeName = (e) => {
     if (dunRef.current.style.color === "red")
       dunRef.current.style.color = "green";
     else dunRef.current.style.color = "red";
-
     setName(e.target.value);
   };
-
   const changeStreet = (e) => {
     setStreet(e.target.value);
   };
-
-  const changeCity = (e) => {
-    setCity(e.target.value);
+  const changeProject = (e) => {
+    setProject(e.target.value);
   };
-
   const saveOrder = () => {
     const newOrder = {
-      userId: userCtx.state.userId,
-      orts: ctx.burger.ingredients,
-      dun: ctx.burger.totalPrice,
       hayag: {
         name,
-        city,
+        project,
         street,
       },
     };
-
     ctx.saveBurger(newOrder, userCtx.state.token);
   };
-  console.log("ContactData rendered....");
   return (
     <div className={css.ContactData}>
       <div ref={dunRef}>
@@ -83,13 +70,13 @@ const ContactData = (props) => {
             onChange={changeStreet}
             type="text"
             name="street"
-            placeholder="Таны гэрийн хаяг"
+            placeholder="Ажлын байршил"
           />
           <input
-            onChange={changeCity}
+            onChange={changeProject}
             type="text"
-            name="city"
-            placeholder="Таны хот"
+            name="project"
+            placeholder="Төслийн нэр"
           />
           <Button text="ИЛГЭЭХ" btnType="Success" daragdsan={saveOrder} />
         </div>
