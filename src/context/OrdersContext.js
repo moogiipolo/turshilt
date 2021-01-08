@@ -11,6 +11,7 @@ const initialState = {
 
 export const OrderStore = (props) => {
   const [state, setState] = useState(initialState);
+  const [sfile, setSfile] = useState([]);
 
   const loadOrders = (userId, token) => {
     // Захиалгыг татаж эхлэлээ гэдгийг мэдэгдэнэ.
@@ -22,12 +23,14 @@ export const OrderStore = (props) => {
       .then((response) => {
         const loadedOrders = Object.entries(response.data).reverse();
         setState({ ...state, orders: loadedOrders });
+        const file = response.data;
+        setSfile(file);
       })
       .catch((err) => setState({ ...state, error: err }));
   };
 
   return (
-    <OrderContext.Provider value={{ state, loadOrders }}>
+    <OrderContext.Provider value={{ state, loadOrders, sfile }}>
       {props.children}
     </OrderContext.Provider>
   );

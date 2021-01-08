@@ -29,10 +29,12 @@ const App = (props) => {
     setShowSidebar((prevShowSidebar) => !prevShowSidebar);
   };
   const [tuuver, setTuuver] = useState([]);
+  const [testleh, setTestleh] = useState([]);
   useEffect(() => {
     axios
       .get("/orders.json")
       .then((response) => {
+        // setTestleh(response.data);
         setTuuver(Object.entries(Object.entries(response.data)));
       })
       .catch((error) => {
@@ -71,7 +73,7 @@ const App = (props) => {
         {ddata ? (
           <Spinner />
         ) : (
-          <BurgerStore firebase={tuuver}>
+          <BurgerStore firebase={tuuver} testleh={testleh}>
             <Suspense fallback={<div>Түр хүлээнэ үү...</div>}>
               {userCtx.state.userId ? (
                 <Switch>

@@ -34,10 +34,16 @@ const BuildControls = (props) => {
               >
                 <option value="">Байрлал</option>
                 <option value="гэрт">гэрт</option>
-                <option value="агуулах">агуулах</option>
+                <option value="p99X93YP3HWtNc8QGZMe3A5s8rQ2">агуулах</option>
+                <option value="дээд гэрт">30-607</option>
+                <option value="санхагүй байгаа">Алга болсон</option>
+                <option value="rrdWK8feiNYDKGgB7xLDrmiVKT02">утас</option>
+                <option value="fSiuttgUGsYprL3rtacbjT138rv1">
+                  Мөнх-Эрдэнэ
+                </option>
               </select>
             </th>
-            <th>Төрөл</th>
+            {/* <th>Төрөл</th> */}
             <th>
               <select
                 type="text"
@@ -46,10 +52,10 @@ const BuildControls = (props) => {
                 onChange={changeSongoh2}
               >
                 <option value="">Ангилал</option>
-                <option value="багаж батерей">Багаж батерей</option>
-                <option value="багаж газ">Багаж газ</option>
-                <option value="багаж гар">Багаж гар</option>
-                <option value="багаж цахилгаан">Багаж цахилгаан</option>
+                <option value="батерей">Батерей</option>
+                <option value="газ">Газ</option>
+                <option value="гар">Гар</option>
+                <option value="цахилгаан">Цахилгаан</option>
                 <option value="дагалдах">Дагалдах</option>
               </select>
             </th>
@@ -69,7 +75,7 @@ const BuildControls = (props) => {
                 ЗАХИАЛАХ
               </button>
             </th>
-            <th>Загвар</th>
+            <th>Нэгж Үнэ</th>
             <th>Эвдэрэл</th>
             <th>Дагалдах</th>
           </tr>
@@ -108,15 +114,19 @@ const BuildControls = (props) => {
                     }
                     evderel={
                       burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1]
-                        .Эвдэрэл
+                        .Төлөв
                     }
                     dagaldah={
                       burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1]
-                        .ДагалдахХэрэгсэл
+                        .Дагалдах
                     }
                     zagvar={
                       burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1]
                         .НэгжҮнэ
+                    }
+                    hemjihNegj={
+                      burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1]
+                        .ХэмжихНэгж
                     }
                     baigaaToo={
                       burgerContext.tuuver[burgerContext.tuuverS[key][0]][1][1]

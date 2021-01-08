@@ -16,7 +16,7 @@ export const BurgerStore = (props) => {
   const [burger, setBurger] = useState(initialState);
   const [tuuver, setTuuver] = useState(props.firebase);
   const [tuuverS, setTuuverS] = useState(tuuver);
-  const [hevlehEh, setHevlehEh] = useState(tuuver);
+  const [testleh, setTestleh] = useState(props.testleh);
   const saveBurger = (newOrder, token) => {
     setBurger({ ...burger, saving: true });
     Object.keys(tuuver).map((el, orts) => {
@@ -24,6 +24,7 @@ export const BurgerStore = (props) => {
         const hevl = {
           Ангилал: tuuver[orts][1][1].Ангилал,
           ДагалдахХэрэгсэл: tuuver[orts][1][1].ДагалдахХэрэгсэл,
+          Дагалдах: tuuver[orts][1][1].Дагалдах,
           Загвар: tuuver[orts][1][1].Загвар,
           Линк: tuuver[orts][1][1].Линк,
           НэгжҮнэ: tuuver[orts][1][1].НэгжҮнэ,
@@ -31,6 +32,7 @@ export const BurgerStore = (props) => {
           Хэзээ: Date(),
           ХэмжихНэгж: tuuver[orts][1][1].ХэмжихНэгж,
           Эвдэрэл: tuuver[orts][1][1].Эвдэрэл,
+          Төлөв: tuuver[orts][1][1].Төлөв,
           Нэр: tuuver[orts][1][1].Нэр,
           if: true,
           userId: userCtx.state.userId,
@@ -46,7 +48,6 @@ export const BurgerStore = (props) => {
             setBurger({ ...burger, saving: false, finished: true, error });
           });
       } else {
-        console.log("whaha");
       }
     });
     setBurger({ ...burger, saving: false, finished: true, error: null });
@@ -80,6 +81,7 @@ export const BurgerStore = (props) => {
               userId: tuuver[orts][1][1].userId,
               Ангилал: tuuver[orts][1][1].Ангилал,
               ДагалдахХэрэгсэл: tuuver[orts][1][1].ДагалдахХэрэгсэл,
+              Дагалдах: tuuver[orts][1][1].Дагалдах,
               Загвар: tuuver[orts][1][1].Загвар,
               Линк: tuuver[orts][1][1].Линк,
               НэгжҮнэ: tuuver[orts][1][1].НэгжҮнэ,
@@ -87,6 +89,7 @@ export const BurgerStore = (props) => {
               Хэзээ: tuuver[orts][1][1].Хэзээ,
               ХэмжихНэгж: tuuver[orts][1][1].ХэмжихНэгж,
               Эвдэрэл: tuuver[orts][1][1].Эвдэрэл,
+              Төлөв: tuuver[orts][1][1].Төлөв,
               Нэр: tuuver[orts][1][1].Нэр,
               if: false,
               НийтҮнэ: tuuver[orts][1][1].НийтҮнэ + 1,
@@ -113,13 +116,14 @@ export const BurgerStore = (props) => {
             userId: tuuver[orts][1][1].userId,
             Ангилал: tuuver[orts][1][1].Ангилал,
             ДагалдахХэрэгсэл: tuuver[orts][1][1].ДагалдахХэрэгсэл,
+            Дагалдах: tuuver[orts][1][1].Дагалдах,
             Загвар: tuuver[orts][1][1].Загвар,
             Линк: tuuver[orts][1][1].Линк,
             НэгжҮнэ: tuuver[orts][1][1].НэгжҮнэ,
             Тоо: tuuver[orts][1][1].Тоо,
             Хэзээ: tuuver[orts][1][1].Хэзээ,
             ХэмжихНэгж: tuuver[orts][1][1].ХэмжихНэгж,
-            Эвдэрэл: tuuver[orts][1][1].Эвдэрэл,
+            Төлөв: tuuver[orts][1][1].Төлөв,
             Нэр: tuuver[orts][1][1].Нэр,
             if: tuuver[orts][1][1].if,
             НийтҮнэ: tuuver[orts][1][1].НийтҮнэ - 1,
@@ -132,6 +136,7 @@ export const BurgerStore = (props) => {
     // console.log(tuuver.q001),
     <BurgerContext.Provider
       value={{
+        testleh,
         burger,
         tuuver,
         tuuverS,

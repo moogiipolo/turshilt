@@ -3,7 +3,7 @@ import css from "./style.module.css";
 import BurgerContext from "../../../context/BurgerContext";
 const Nemeh = (props) => {
   const burgerContext = useContext(BurgerContext);
-  if (props.turul !== 0)
+  if (props.turul !== props.baigaaToo)
     return (
       <button
         onClick={() => burgerContext.addIngredient(props.type)}
@@ -13,7 +13,7 @@ const Nemeh = (props) => {
       </button>
     );
   else {
-    return null;
+    return <strong>=</strong>;
   }
 };
 export default Nemeh;
